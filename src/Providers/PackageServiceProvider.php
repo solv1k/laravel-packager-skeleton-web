@@ -6,10 +6,11 @@ use Illuminate\Support\ServiceProvider;
 
 class PackageServiceProvider extends ServiceProvider
 {
+    public const CONFIG_PATH = __DIR__.'/../../config/:lc:package.php';
     public const MIGRATIONS_PATH = __DIR__.'/../../database/migrations';
     public const LANGS_PATH = __DIR__.'/../../resources/lang';
     public const VIEWS_PATH = __DIR__.'/../../resources/views';
-    public const CONFIG_PATH = __DIR__.'/../../config/:lc:package.php';
+    public const ASSETS_PATH = __DIR__.'/../../resources/assets';
 
     /**
      * Perform post-registration booting of services.
@@ -44,7 +45,7 @@ class PackageServiceProvider extends ServiceProvider
     public function register(): void
     {
         // Register config
-        $this->mergeConfigFrom(__DIR__.'/../../config/:lc:package.php', ':lc:vendor.:lc:package');
+        $this->mergeConfigFrom(self::CONFIG_PATH, ':lc:vendor.:lc:package');
 
         // Register providers
         $this->app->register(RouteServiceProvider::class);
@@ -70,22 +71,22 @@ class PackageServiceProvider extends ServiceProvider
         // Publishing the configuration file.
         $this->publishes([
             self::CONFIG_PATH => config_path(':lc:vendor.:lc:package.php'),
-        ], ':lc:vendor.:lc:package.config');
+        ], [':lc:vendor.:lc:package', ':lc:vendor.:lc:package.config']);
 
         // Publishing the views.
         /*$this->publishes([
-            __DIR__.'/../resources/views' => base_path('resources/views/vendor/:lc:vendor'),
-        ], ':lc:package.views');*/
-
-        // Publishing assets.
-        /*$this->publishes([
-            __DIR__.'/../resources/assets' => public_path('vendor/:lc:vendor'),
-        ], ':lc:package.views');*/
+            self::VIEWS_PATH => base_path('resources/views/vendor/:lc:vendor/:lc:package'),
+        ], [':lc:vendor.:lc:package', ':lc:vendor.:lc:package.views']);*/
 
         // Publishing the translation files.
         /*$this->publishes([
-            __DIR__.'/../resources/lang' => resource_path('lang/vendor/:lc:vendor'),
-        ], ':lc:package.views');*/
+            self::LANGS_PATH => resource_path('lang/vendor/:lc:vendor/:lc:package'),
+        ], [':lc:vendor.:lc:package', ':lc:vendor.:lc:package.lang']);*/
+
+        // Publishing assets.
+        /*$this->publishes([
+            self::ASSETS_PATH => public_path('vendor/:lc:vendor/:lc:package'),
+        ], [':lc:vendor.:lc:package', ':lc:vendor.:lc:package.assets']);*/
 
         // Registering package commands.
         // $this->commands([]);
