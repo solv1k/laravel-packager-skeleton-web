@@ -31,7 +31,7 @@ class :uc:packageServiceProvider extends ServiceProvider
     public function register(): void
     {
         // Register config
-        $this->mergeConfigFrom(__DIR__.'/../config/:lc:package.php', ':lc:package');
+        $this->mergeConfigFrom(__DIR__.'/../../config/:lc:package.php', ':lc:package');
 
         // Register providers
         $this->app->register(RouteServiceProvider::class);
