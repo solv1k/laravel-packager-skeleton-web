@@ -13,10 +13,9 @@ class :uc:packageServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // $this->loadRoutesFrom(RouteServiceProvider::ROUTES_FILE);
-        // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', ':lc:vendor');
+        $this->loadTranslationsFrom(__DIR__.'/../../resources/lang', ':lc:vendor');
+        $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
         // $this->loadViewsFrom(__DIR__.'/../resources/views', ':lc:vendor');
-        // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
 
         // Publishing is only necessary when using the CLI.
         if ($this->app->runningInConsole()) {
