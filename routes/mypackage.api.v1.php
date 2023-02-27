@@ -1,3 +1,3 @@
 <?php
 
-// :uc:package Routes goes here...
+// All routes starts with "/api/v1/:lc:package"

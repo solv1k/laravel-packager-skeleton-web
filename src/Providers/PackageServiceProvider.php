@@ -43,7 +43,7 @@ class PackageServiceProvider extends ServiceProvider
     public function register(): void
     {
         // Register config
-        $this->mergeConfigFrom(__DIR__.'/../../config/:lc:package.php', ':lc:package');
+        $this->mergeConfigFrom(__DIR__.'/../../config/:lc:package.php', ':lc:vendor.:lc:package');
 
         // Register providers
         $this->app->register(RouteServiceProvider::class);
@@ -56,7 +56,7 @@ class PackageServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return [':lc:package'];
+        return [':lc:vendor.:lc:package'];
     }
 
     /**
@@ -69,7 +69,7 @@ class PackageServiceProvider extends ServiceProvider
         // Publishing the configuration file.
         $this->publishes([
             __DIR__.'/../config/:lc:package.php' => config_path(':lc:package.php'),
-        ], ':lc:package.config');
+        ], ':lc:vendor.:lc:package.config');
 
         // Publishing the views.
         /*$this->publishes([
