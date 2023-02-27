@@ -4,8 +4,12 @@ namespace :uc:vendor\:uc:package\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class :uc:packageServiceProvider extends ServiceProvider
+class PackageServiceProvider extends ServiceProvider
 {
+    public const MIGRATIONS_PATH = __DIR__.'/../../database/migrations';
+    public const LANGS_PATH = __DIR__.'/../../resources/lang';
+    public const VIEWS_PATH = __DIR__.'/../../resources/views';
+
     /**
      * Perform post-registration booting of services.
      *
@@ -13,9 +17,17 @@ class :uc:packageServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->loadTranslationsFrom(__DIR__.'/../../resources/lang', ':lc:vendor');
-        $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
-        // $this->loadViewsFrom(__DIR__.'/../resources/views', ':lc:vendor');
+        if (file_exists(self::MIGRATIONS_PATH)) {
+            $this->loadMigrationsFrom(self::MIGRATIONS_PATH);
+        }
+
+        if (file_exists(self::LANGS_PATH)) {
+            $this->loadTranslationsFrom(self::LANGS_PATH, ':lc:vendor.:lc:package');
+        }
+
+        if (file_exists(self::VIEWS_PATH)) {
+            $this->loadViewsFrom(self::VIEWS_PATH, ':lc:vendor.:lc:package');
+        }
 
         // Publishing is only necessary when using the CLI.
         if ($this->app->runningInConsole()) {

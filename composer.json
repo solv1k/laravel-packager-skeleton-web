@@ -31,7 +31,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                ":uc:vendor\\:uc:package\\Providers\\:uc:packageServiceProvider"
+                ":uc:vendor\\:uc:package\\Providers\\PackageServiceProvider"
             ]
         }
     }
