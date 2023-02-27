@@ -10,7 +10,7 @@
         }
     ],
     "homepage": "https://github.com/:lc:vendor/:lc:package",
-    "keywords": ["Laravel", ":uc:package"],
+    "keywords": ["Laravel", "Preon", ":uc:vendor", ":uc:package"],
     "require": {
         "illuminate/support": "~9"
     },
@@ -31,11 +31,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                ":uc:vendor\\:uc:package\\:uc:packageServiceProvider"
-            ],
-            "aliases": {
-                ":uc:package": ":uc:vendor\\:uc:package\\Facades\\:uc:package"
-            }
+                ":uc:vendor\\:uc:package\\Providers\\:uc:packageServiceProvider"
+            ]
         }
     }
 }

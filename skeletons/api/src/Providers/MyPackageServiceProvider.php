@@ -1,6 +1,6 @@
 <?php
 
-namespace :uc:vendor\:uc:package;
+namespace :uc:vendor\:uc:package\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -13,10 +13,10 @@ class :uc:packageServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // $this->loadRoutesFrom(RouteServiceProvider::ROUTES_FILE);
         // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', ':lc:vendor');
         // $this->loadViewsFrom(__DIR__.'/../resources/views', ':lc:vendor');
         // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-        // $this->loadRoutesFrom(__DIR__.'/routes.php');
 
         // Publishing is only necessary when using the CLI.
         if ($this->app->runningInConsole()) {
@@ -31,7 +31,11 @@ class :uc:packageServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        // Register config
         $this->mergeConfigFrom(__DIR__.'/../config/:lc:package.php', ':lc:package');
+
+        // Register providers
+        $this->app->register(RouteServiceProvider::class);
     }
 
     /**
