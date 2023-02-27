@@ -9,6 +9,7 @@ class PackageServiceProvider extends ServiceProvider
     public const MIGRATIONS_PATH = __DIR__.'/../../database/migrations';
     public const LANGS_PATH = __DIR__.'/../../resources/lang';
     public const VIEWS_PATH = __DIR__.'/../../resources/views';
+    public const CONFIG_PATH = __DIR__.'/../../config/:lc:package.php';
 
     /**
      * Perform post-registration booting of services.
@@ -68,7 +69,7 @@ class PackageServiceProvider extends ServiceProvider
     {
         // Publishing the configuration file.
         $this->publishes([
-            __DIR__.'/../config/:lc:package.php' => config_path(':lc:package.php'),
+            self::CONFIG_PATH => config_path(':lc:vendor.:lc:package.php'),
         ], ':lc:vendor.:lc:package.config');
 
         // Publishing the views.
