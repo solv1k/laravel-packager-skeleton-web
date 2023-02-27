@@ -12,7 +12,7 @@
     "homepage": "https://github.com/:lc:vendor/:lc:package",
     "keywords": ["Laravel", "Preon", ":uc:vendor", ":uc:package"],
     "require": {
-        "illuminate/support": "~9"
+        "illuminate/support": "~9|~10"
     },
     "require-dev": {
         "phpunit/phpunit": "~9.0",
